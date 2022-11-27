@@ -1,0 +1,31 @@
+
+.caneta{
+    color: #F5DD29;
+}
+.caneta:hover{
+    color: #F9A825;
+}
+.lixeira{
+    color: #ff0000;
+}
+.lixeira:hover{
+    color: #8b0303;
+} 
+.adicionar{
+    font-size: 50px;
+    animation: size 4s infinite 1s;
+}
+.menu{
+    font-size: 50px;
+    animation: size 4s infinite 1s;
+}
+.botao{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.botao .btn{
+    width: max-content;
+}
