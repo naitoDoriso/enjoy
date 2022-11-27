@@ -29,34 +29,38 @@
 </div>
 <div>
   <table class="table table-hover table-bordered">
-    <tr>
-      <th>#</th>
-      <th>Data da Venda</th>
-      <th>Quantidade Vendida</th>
-      <th>Produto Vendido</th>
-      <th>Vendedor</th>
-      <th>Cliente</th>
-      <th>Apagar</th>
-    </tr>
-    <?php
-    foreach ($Vendas as $Venda) {
-    ?>
+    <thead>
       <tr>
-        <td> <?= $Venda->ID_VENDA ?> </td>
-        <td> <?= $Venda->DATA_VENDA ?> </td>
-        <td> <?= $Venda->QUANTIDADE_VENDA ?> </td>
-        <td> <?= $Venda->NOME_PRODUTO ?> </td>
-        <td> <?= $Venda->NOME_VENDEDOR ?> </td>
-        <td> <?= $Venda->NOME ?> </td>
-        <td><a href=" <?= base_url('Venda/del/' . $Venda->ID_VENDA) ?> "><svg class="lixeira" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-            </svg></a></td>
+        <th>#</th>
+        <th>Data da Venda</th>
+        <th>Quantidade Vendida</th>
+        <th>Produto Vendido</th>
+        <th>Vendedor</th>
+        <th>Cliente</th>
+        <th>Apagar</th>
       </tr>
-    <?php
-    }
-    ?>
+    </thead>
+    <tbody>
+      <?php
+      foreach ($Vendas as $Venda) {
+      ?>
+        <tr>
+          <td> <?= $Venda->ID_VENDA ?> </td>
+          <td> <?= $Venda->DATA_VENDA ?> </td>
+          <td> <?= $Venda->QUANTIDADE_VENDA ?> </td>
+          <td> <?= $Venda->NOME_PRODUTO ?> </td>
+          <td> <?= $Venda->NOME_VENDEDOR ?> </td>
+          <td> <?= $Venda->NOME ?> </td>
+          <td><a href=" <?= base_url('Venda/del/' . $Venda->ID_VENDA) ?> "><svg class="lixeira" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+              </svg></a></td>
+        </tr>
+      <?php
+      }
+      ?>
+    </tbody>
   </table>
-  <?= $links ?>
+
 </div>
 
 

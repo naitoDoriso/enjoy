@@ -9,10 +9,9 @@ class Cliente extends BaseController
     public function index()
     {
         $ClienteModel = new \App\Models\ClienteModel();
-        $clientes = $ClienteModel->paginate(15, "Cliente");
-        $pager = $ClienteModel->pager->links("Cliente");   
+        $clientes = $ClienteModel->findAll();
 
-        return view('list/lista_clientes' , ['clientes' => $clientes, 'links' => $pager]);
+        return view('list/lista_clientes' , ['clientes' => $clientes]);
     }
 
     public function adicionar(){

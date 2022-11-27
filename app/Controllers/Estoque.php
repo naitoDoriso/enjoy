@@ -6,14 +6,12 @@ use \App\Controllers\BaseController;
 
 class Estoque extends BaseController{
     public function index(){
-
         $estoqueModel = new \App\Models\EstoqueModel();
         $produtoModel = new \App\Models\ProdutoModel();
         
-        $estoques = $estoqueModel->paginate(15, "Estoque");
-        $pager = $estoqueModel->pager->links("Estoque");   
+        $estoques = $estoqueModel->findAll();
 
-        return view('list/lista_estoques', ['estoques' => $estoques, "produto"=>$produtoModel, 'links' => $pager]);
+        return view('list/lista_estoques', ['estoques' => $estoques, "produto"=>$produtoModel]);
     }
 
     public function adicionar(){

@@ -8,10 +8,9 @@ class Venda extends BaseController{
     
     public function index(){
         $VendaModel = new \App\Models\VendaModel();
-        $Vendas = $VendaModel->JoinVendaPager()["paginate"]; 
-        $pager = $VendaModel->JoinVendaPager()["pager"]->links();
+        $Vendas = $VendaModel->JoinVenda();
 
-        return view('list/lista_vendas', ['Vendas' => $Vendas, "links" => $pager]);
+        return view('list/lista_vendas', ['Vendas' => $Vendas]);
     }
 
     public function adicionar(){

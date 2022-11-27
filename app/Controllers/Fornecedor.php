@@ -6,12 +6,10 @@ use \App\Controllers\BaseController;
 
 class Fornecedor extends BaseController{
     public function index(){
-
         $fornecedorModel = new \App\Models\FornecedorModel();
-        $fornecedores = $fornecedorModel->paginate(15, "Fornecedor"); // SELECT * FROM PESSOA;
-        $pager = $fornecedorModel->pager->links("Fornecedor");
+        $fornecedores = $fornecedorModel->findAll();
 
-        return view('list/lista_fornecedores', ['fornecedores' => $fornecedores, 'links' => $pager]);
+        return view('list/lista_fornecedores', ['fornecedores' => $fornecedores]);
     }
 
     public function adicionar(){

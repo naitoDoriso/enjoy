@@ -10,10 +10,9 @@ class Produto extends BaseController{
         $produtoModel = new \App\Models\ProdutoModel();
         $fornecedorModel = new \App\Models\FornecedorModel();
         
-        $produtos = $produtoModel->paginate(15, "Produto");
-        $pager = $produtoModel->pager->links("Produto");
+        $produtos = $produtoModel->findAll();
 
-        return view('list/lista_produtos', ['produtos' => $produtos, "fornecedor"=>$fornecedorModel, 'links' => $pager]);
+        return view('list/lista_produtos', ['produtos' => $produtos, "fornecedor"=>$fornecedorModel]);
     }
 
     public function adicionar(){

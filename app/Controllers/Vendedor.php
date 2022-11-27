@@ -8,10 +8,9 @@ class Vendedor extends BaseController{
     public function index(){
 
         $vendedorModel = new \App\Models\VendedorModel();
-        $vendedores = $vendedorModel->paginate(15, "Vendedor"); // SELECT * FROM PESSOA;
-        $pager = $vendedorModel->pager->links("Vendedor");
+        $vendedores = $vendedorModel->findAll();
 
-        return view('list/lista_vendedores', ['vendedores' => $vendedores, 'links' => $pager]);
+        return view('list/lista_vendedores', ['vendedores' => $vendedores]);
     }
 
     public function adicionar(){

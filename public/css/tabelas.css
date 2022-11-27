@@ -1,4 +1,12 @@
-
+.table, .table td, .table th {
+    text-align: center;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border: 1px solid lavender!important;
+}
+div.dt-buttons {
+    float: none!important;
+}
 .caneta{
     color: #F5DD29;
 }
@@ -28,4 +36,24 @@
 }
 .botao .btn{
     width: max-content;
+}
+.dataTables_wrapper .dataTables_paginate, .dataTables_wrapper .dataTables_paginate span, .dataTables_wrapper .dataTables_paginate .paginate_button {
+    display: flex!important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    width: 40px!important;
+    height: 40px!important;
+    border: none!important;
+    border-radius: 6px!important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: black!important;
+    background: lavender!important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: #198754!important;
+    color: white!important;
 }
