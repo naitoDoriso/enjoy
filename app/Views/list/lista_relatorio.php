@@ -1,9 +1,9 @@
-<?= $this->extend('modelo'); ?>
+<?= $this->extend('modelo_relatorio'); ?>
 <?= $this->section('lista'); ?>
 <?php
 if ($Tipo == "mes") {
 ?>
-   <table>
+   <table class="table table-hover table-bordered">
       <thead>
          <tr>
             <th>Mês e Ano</th>
@@ -25,14 +25,14 @@ if ($Tipo == "mes") {
    </table>
 <?php
    if (!empty($Link) && $Link == 'true') {
-      echo "<a href='" . base_url('/Venda') . "'>Voltar vendas</a>";
+      echo "<a tabindex='1' href='" . base_url('/Venda') . "'>Voltar vendas</a>";
    }
 }
 ?>
 <?php
 if ($Tipo == "produto") {
 ?>
-   <table>
+   <table class="table table-hover table-bordered">
       <thead>
          <tr>
             <th>Produto</th>
@@ -58,14 +58,14 @@ if ($Tipo == "produto") {
    <br>
 <?php
    if (!empty($Link) && $Link == 'true') {
-      echo "<a href='" . base_url('/Venda') . "'>Voltar vendas</a>";
+      echo "<a tabindex='1' href='" . base_url('/Venda') . "'>Voltar vendas</a>";
    }
 }
 ?>
 <?php
 if ($Tipo == "vendedor") {
 ?>
-   <table>
+   <table class="table table-hover table-bordered">
       <thead>
          <tr>
             <th>Funcionario</th>
@@ -88,7 +88,7 @@ if ($Tipo == "vendedor") {
    <br>
 <?php
    if (!empty($Link) && $Link == 'true') {
-      echo "<a href='" . base_url('/Venda') . "'>Voltar vendas</a>";
+      echo "<a tabindex='1' href='" . base_url('/Venda') . "'>Voltar vendas</a>";
    }
 }
 ?>

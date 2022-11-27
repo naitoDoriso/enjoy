@@ -11,7 +11,7 @@ class Estoque extends BaseController{
         
         $estoques = $estoqueModel->findAll();
 
-        return view('list/lista_estoques', ['estoques' => $estoques, "produto"=>$produtoModel]);
+        return view('list/lista_estoques', ['estoques' => $estoques, "produto"=>$produtoModel, 'title' => "Controle de Estoque"]);
     }
 
     public function adicionar(){
@@ -38,7 +38,7 @@ class Estoque extends BaseController{
             }
         }
 
-        return view('form/form_estoque', ['botao' => "Salvar", 'msg' => $mensagem, 'estoque' => (object)["DATA_ENTRADA"=>"", "QUANTIDADE_ENTRADA"=>"","ID_PRODUTO"=>""], 'produtos'=>$produtoModel->findAll(), 'select_prod' => '']);
+        return view('form/form_estoque', ['botao' => "Salvar", 'msg' => $mensagem, 'produtos'=>$produtoModel->findAll(), 'title' => "Adicionar Estoque"]);
     }
 
     public function remove($id){
@@ -87,6 +87,6 @@ class Estoque extends BaseController{
         
         $estoque = $estoqueModel->find($id);
 
-        return view('form/form_estoque', ['botao' => "Editar", 'msg' => $mensagem, 'estoque' => $estoque ,'produtos' => $produtoModel->findAll(), 'select_prod' => $estoqueModel -> find($id) -> ID_PRODUTO]);
+        return view('form/form_estoque', ['botao' => "Editar", 'msg' => $mensagem, 'estoque' => $estoque ,'produtos' => $produtoModel->findAll(), 'title' => "Editar Estoque"]);
     }
 }

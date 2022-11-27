@@ -10,7 +10,7 @@ class Venda extends BaseController{
         $VendaModel = new \App\Models\VendaModel();
         $Vendas = $VendaModel->JoinVenda();
 
-        return view('list/lista_vendas', ['Vendas' => $Vendas]);
+        return view('list/lista_vendas', ['Vendas' => $Vendas, 'title' => "Controle de Vendas"]);
     }
 
     public function adicionar(){
@@ -51,7 +51,7 @@ class Venda extends BaseController{
             }
         }
 
-        return view('form/form_venda', ['botao' => "Salvar", 'msg' => $mensagem, 'venda' =>(object)["DATA_VENDA" => "", "QUANTIDADE" => "", "ID_PRODUTO" => "", "ID_FORNECEDOR" => "", "CPF_CLIENTE" => ""], 'produtos'=>$produtoModel->findAll(), 'vendedores'=>$vendedorModel->findAll(),'clientes'=>$clienteModel->findAll()]);        
+        return view('form/form_venda', ['botao' => "Salvar", 'msg' => $mensagem, 'produtos'=>$produtoModel->findAll(), 'vendedores'=>$vendedorModel->findAll(),'clientes'=>$clienteModel->findAll(), 'title' => "Adicionar Venda"]);
     }
 
     public function remove($id){
@@ -81,37 +81,13 @@ class Venda extends BaseController{
     public function gerarRelatorio($Tipo){
         if($Tipo == "mes"){
             $vendaModel = new \App\Models\VendaModel();
-            return view('list/lista_relatorio', ['Relatorio' => $Tipo, 'Resultados' => $vendaModel->selectData(), 'Link'=>'true', 'Tipo' => 'mes']);
+            return view('list/lista_relatorio', ['Relatorio' => $Tipo, 'Resultados' => $vendaModel->selectData(), 'Link'=>'true', 'Tipo' => 'mes', 'title' => "Relatório de Vendas por Mês"]);
         }else if($Tipo == "produto"){
             $vendaModel = new \App\Models\VendaModel();
-            return view('list/lista_relatorio', ['Relatorio' => $Tipo, 'Resultados' => $vendaModel->selectProduto(), 'Link'=>'true', 'Tipo' => 'produto']);
+            return view('list/lista_relatorio', ['Relatorio' => $Tipo, 'Resultados' => $vendaModel->selectProduto(), 'Link'=>'true', 'Tipo' => 'produto', 'title' => "Relatório de Vendas por Produto"]);
         }else if($Tipo == "vendedor"){
             $vendaModel = new \App\Models\VendaModel();
-            return view('list/lista_relatorio', ['Relatorio' => $Tipo, 'Resultados' => $vendaModel->selectVendedor(), 'Link'=>'true', 'Tipo' => 'vendedor']);
+            return view('list/lista_relatorio', ['Relatorio' => $Tipo, 'Resultados' => $vendaModel->selectVendedor(), 'Link'=>'true', 'Tipo' => 'vendedor', 'title' => "Relatório de Vendas por Vendedor"]);
         }
     }
-    /*public function salvarRelatorio($Tipo){
-        if($Tipo == "mes"){
-            $vendaModel = new \App\Models\VendaModel();
-            $dompdf = new \Dompdf\Dompdf();
-            $dompdf->loadHtml(view('list/lista_relatorio', ['Relatorio' => $Tipo, 'Resultados' => $vendaModel->selectData(), 'Link'=>'false', 'Tipo' => 'mes']));
-            $dompdf->setPaper('A4', 'landscape');
-            $dompdf->render();
-            $dompdf->stream('relatorio_mes'.time().'.pdf');
-        }else if($Tipo == "produto"){
-            $vendaModel = new \App\Models\VendaModel();
-            $dompdf = new \Dompdf\Dompdf();
-            $dompdf->loadHtml(view('list/lista_relatorio', ['Relatorio' => $Tipo, 'Resultados' => $vendaModel->selectProduto(), 'Link'=>'false', 'Tipo' => 'produto']));
-            $dompdf->setPaper('A4', 'landscape');
-            $dompdf->render();
-            $dompdf->stream('relatorio_produto'.time().'.pdf');
-        }else if($Tipo == "vendedor"){
-            $vendaModel = new \App\Models\VendaModel();
-            $dompdf = new \Dompdf\Dompdf();
-            $dompdf->loadHtml(view('list/lista_relatorio', ['Relatorio' => $Tipo, 'Resultados' => $vendaModel->selectVendedor(), 'Link'=>'false', 'Tipo' => 'vendedor']));
-            $dompdf->setPaper('A4', 'landscape');
-            $dompdf->render();
-            $dompdf->stream('relatorio_vendedor'.time().'.pdf');
-        }
-    }*/
 }   

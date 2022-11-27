@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= empty($title) ? "Cadastro" : $title ?></title>
+    <title><?= empty($title) ? "Relatório" : $title ?></title>
     <link rel="icon" href="<?= base_url("img/favicon.png") ?>">
 
     <!-- CSS only -->
@@ -31,7 +31,52 @@
     <script>
         $().ready(() => {
             $('table').DataTable({
-                dom: 'frltip',
+                dom: 'Bfrltip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        customize: (doc) => {
+                            doc.styles.tableHeader.color = "#000";
+                            doc.styles.tableHeader.fillColor = "#FFF";
+                            let numcol = doc.content[1].table.body[0].length;
+                            let perc = (100/numcol).toFixed(2);
+                            let widths = [];
+
+                            for (let i=0; i<numcol; i++) {
+                                widths.push(perc+"%");
+                            }
+                            doc.content[1].table.widths = widths;
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ],
                 aLengthMenu: [
                     [10, 25, 50, 100, -1],
                     [10, 25, 50, 100, "All"]
@@ -58,6 +103,19 @@
                     "aria": {
                         "sortAscending": ": coluna ordenada em ordem crescente",
                         "sortDescending": ": coluna ordenada em ordem decrescente"
+                    },
+                    "buttons": {
+                        'copy': 'Copiar',
+                        'copyTitle': 'Copiado para a área de transferência',
+                        'copySuccess': {
+                            _: '%d linhas copiadas',
+                            1: '1 linha copiada'
+                        },
+                        'csv': 'CSV',
+                        'excel': 'Excel',
+                        'pdf': 'PDF',
+                        'print': 'Imprimir',
+                        'colvis': 'Colunas Visíveis'
                     }
                 }
             });

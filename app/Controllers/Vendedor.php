@@ -10,7 +10,7 @@ class Vendedor extends BaseController{
         $vendedorModel = new \App\Models\VendedorModel();
         $vendedores = $vendedorModel->findAll();
 
-        return view('list/lista_vendedores', ['vendedores' => $vendedores]);
+        return view('list/lista_vendedores', ['vendedores' => $vendedores, 'title' => "Controle de Vendedores"]);
     }
 
     public function adicionar(){
@@ -37,7 +37,7 @@ class Vendedor extends BaseController{
             }
         }
 
-        return view('form/form_vendedor', ['botao' => "Salvar", 'msg' => $mensagem, 'vendedor' => ""]);
+        return view('form/form_vendedor', ['botao' => "Salvar", 'msg' => $mensagem, 'vendedor' => "", 'title' => "Adicionar Vendedor"]);
     }
 
     public function remove($id){
@@ -72,7 +72,6 @@ class Vendedor extends BaseController{
         
         $vendedor = $vendedorModel->find($id);
 
-        return view('form/form_vendedor', ['botao' => "Editar", 'msg' => $mensagem, 'vendedor' => $vendedor]);
+        return view('form/form_vendedor', ['botao' => "Editar", 'msg' => $mensagem, 'vendedor' => $vendedor, 'title' => "Editar Vendedor"]);
     }
-
 }

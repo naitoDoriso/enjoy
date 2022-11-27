@@ -1,7 +1,16 @@
 <?= $this->extend('modelo'); ?>
 <?= $this->section('form'); ?>
 
-<?= $msg ?>
+<?= $msg; ?>
+<?php
+    if (empty($estoque)) {
+        $estoque = (object)[
+            "DATA_ENTRADA" => "",
+            "QUANTIDADE_ENTRADA" => "",
+            "ID_PRODUTO"=>""
+        ];
+    }
+?>
 
 <form method="post">
     <label>Data de entrada:</label>
@@ -15,7 +24,7 @@
         if (is_array($produtos)) {
             foreach ($produtos as $i => $produto) {
         ?>
-                <option value="<?= $produto->ID_PRODUTO; ?>" <?php if ($select_prod == $produto->ID_PRODUTO) echo 'selected="' . $select_prod . '"' ?>><?= $produto->NOME_PRODUTO ?></option>
+                <option value="<?= $produto->ID_PRODUTO; ?>" <?php if ($estoque->ID_PRODUTO == $produto->ID_PRODUTO) echo 'selected="true"' ?>><?= $produto->NOME_PRODUTO ?></option>
         <?php
             }
         } else {

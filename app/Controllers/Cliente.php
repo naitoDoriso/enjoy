@@ -11,7 +11,7 @@ class Cliente extends BaseController
         $ClienteModel = new \App\Models\ClienteModel();
         $clientes = $ClienteModel->findAll();
 
-        return view('list/lista_clientes' , ['clientes' => $clientes]);
+        return view('list/lista_clientes' , ['clientes' => $clientes, 'title' => "Controle de Clientes"]);
     }
 
     public function adicionar(){
@@ -36,7 +36,7 @@ class Cliente extends BaseController
             }
         }
         
-        return view('form/form_cliente', ['botao' => "Salvar" , 'msg' => $mensagem]);
+        return view('form/form_cliente', ['botao' => "Salvar" , 'msg' => $mensagem, 'title' => "Adicionar Cliente"]);
     }
     
     public function remove($id){
@@ -69,7 +69,7 @@ class Cliente extends BaseController
         $cliente = $ClienteModel->find($id);
         
         if ($cliente !== NULL) {
-            return view('form/form_cliente', ['botao' => "Editar", 'msg' => $mensagem, 'cliente' => $cliente]);
+            return view('form/form_cliente', ['botao' => "Editar", 'msg' => $mensagem, 'cliente' => $cliente, 'title' => "Editar Cliente"]);
         } else {
             return redirect()->to('/Cliente');
         }

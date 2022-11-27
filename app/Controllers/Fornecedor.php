@@ -9,7 +9,7 @@ class Fornecedor extends BaseController{
         $fornecedorModel = new \App\Models\FornecedorModel();
         $fornecedores = $fornecedorModel->findAll();
 
-        return view('list/lista_fornecedores', ['fornecedores' => $fornecedores]);
+        return view('list/lista_fornecedores', ['fornecedores' => $fornecedores, 'title' => "Controle de Fornecedores"]);
     }
 
     public function adicionar(){
@@ -34,7 +34,7 @@ class Fornecedor extends BaseController{
             }
         }
 
-        return view('form/form_fornecedor', ['botao' => "Salvar", 'msg' => $mensagem, 'fornecedor' => ""]);
+        return view('form/form_fornecedor', ['botao' => "Salvar", 'msg' => $mensagem, 'fornecedor' => "", 'title' => "Adicionar Fornecedor"]);
     }
 
     public function remove($id){
@@ -71,7 +71,7 @@ class Fornecedor extends BaseController{
         $fornecedor = $fornecedorModel->find($id);
         
         if ($fornecedor !== NULL) {
-            return view('form/form_fornecedor', ['botao' => "Editar", 'msg' => $mensagem, 'fornecedor' => $fornecedor]);   
+            return view('form/form_fornecedor', ['botao' => "Editar", 'msg' => $mensagem, 'fornecedor' => $fornecedor, 'title' => "Editar Fornecedor"]);
         } else {
             return redirect()->to('/Cliente');
         }

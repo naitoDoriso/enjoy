@@ -12,7 +12,7 @@ class Produto extends BaseController{
         
         $produtos = $produtoModel->findAll();
 
-        return view('list/lista_produtos', ['produtos' => $produtos, "fornecedor"=>$fornecedorModel]);
+        return view('list/lista_produtos', ['produtos' => $produtos, "fornecedor"=>$fornecedorModel, 'title' => "Controle de Produtos"]);
     }
 
     public function adicionar(){
@@ -42,7 +42,7 @@ class Produto extends BaseController{
             }
         }
 
-        return view('form/form_produto', ['botao' => "Salvar", 'msg' => $mensagem, 'produto' => (object)["NOME_PRODUTO"=>"", "MARCA"=>"","QUANTIDADE"=>"","VALOR"=>"","ID_FORNECEDOR"=>""], 'fornecedores'=>$fornecedorModel->findAll(), 'select_forn' => '']);
+        return view('form/form_produto', ['botao' => "Salvar", 'msg' => $mensagem, 'produto' => (object)["NOME_PRODUTO"=>"", "MARCA"=>"","QUANTIDADE"=>"","VALOR"=>"","ID_FORNECEDOR"=>""], 'fornecedores'=>$fornecedorModel->findAll(), 'select_forn' => '', 'title' => "Adicionar Produto"]);
     }
 
     public function remove($id){
@@ -76,6 +76,6 @@ class Produto extends BaseController{
         
         $produto = $produtoModel->find($id);
 
-        return view('form/form_produto', ['botao' => "Editar", 'msg' => $mensagem, 'produto' => $produto ,'fornecedores' => $fornecedorModel->findAll(), 'select_forn' => $produtoModel -> find($id) -> ID_FORNECEDOR]);
+        return view('form/form_produto', ['botao' => "Editar", 'msg' => $mensagem, 'produto' => $produto ,'fornecedores' => $fornecedorModel->findAll(), 'select_forn' => $produtoModel -> find($id) -> ID_FORNECEDOR, 'title' => "Editar Produto"]);
     }
 }
