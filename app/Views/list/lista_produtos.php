@@ -5,6 +5,7 @@
 	if (empty($vendRows)) $vendRows = "";
 	if (empty($estoRows)) $estoRows = "";
 ?>
+
 <div>
 	<div class="botao">
 		<a href="<?= empty($fornecedor->findAll()) ? '#' : base_url('Produto/add'); ?>" tabindex="-1">
@@ -73,12 +74,11 @@
 				$.post("<?= base_url("Produto/refresh") ?>", {
 					"produtos": "<?= $prodRows ?>",
 					"venda": "<?= $vendRows ?>",
-					"estoque": "<?= $estoRows ?>"
+					"estoque": "<?= $estoRows ?>",
+					"time": "<?= date("Y-m-d h:i:sa") ?>"
 				}, (data) => {
 					if (data=="true") {
 						location.reload();
-					} else {
-						console.log(data);
 					}
 				});
 			}, 3000);

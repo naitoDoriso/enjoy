@@ -25,7 +25,7 @@ class Venda extends BaseController
         $vendedorModel = new \App\Models\VendedorModel();
         $produtoModel = new \App\Models\ProdutoModel();
 
-        if (empty($produtoModel->findAll())||empty($vendedorModel->findAll())||empty($clienteModel->findAll())) {
+        if (empty($produtoModel->findAll()) || empty($vendedorModel->findAll()) || empty($clienteModel->findAll())) {
             return redirect()->to('/Venda');
         }
 
@@ -40,15 +40,19 @@ class Venda extends BaseController
 
             $produto = $produtoModel->find($dadosVenda["ID_PRODUTO"]);
 
-            if ($dadosVenda["QUANTIDADE_VENDA"] <= $produto->QUANTIDADE) {
-                if ($VendaModel->save($dadosVenda)) {
-                    $mensagem = lang("form/form_venda.inserted");
-                    $produtoModel->where("ID_PRODUTO", $produto->ID_PRODUTO)->update($produto->ID_PRODUTO, ["QUANTIDADE" => ($produto->QUANTIDADE - $dadosVenda["QUANTIDADE_VENDA"])]);
-                } else {
-                    $mensagem = $VendaModel->errors();
-                }
+            if ($dadosVenda["DATA_VENDA"]<'1920-01-01' || $dadosVenda["DATA_VENDA"]>date('Y-m-d') || $dadosVenda["DATA_VENDA"]=='0000-00-00') {
+                $mensagem = [lang("form/form_venda.errodate")];
             } else {
-                $mensagem = [lang("form/form_venda.erroqnt")];
+                if ($dadosVenda["QUANTIDADE_VENDA"] <= $produto->QUANTIDADE) {
+                    if ($VendaModel->save($dadosVenda)) {
+                        $mensagem = lang("form/form_venda.inserted");
+                        $produtoModel->where("ID_PRODUTO", $produto->ID_PRODUTO)->update($produto->ID_PRODUTO, ["QUANTIDADE" => ($produto->QUANTIDADE - $dadosVenda["QUANTIDADE_VENDA"])]);
+                    } else {
+                        $mensagem = $VendaModel->errors();
+                    }
+                } else {
+                    $mensagem = [lang("form/form_venda.erroqnt")];
+                }
             }
         }
 

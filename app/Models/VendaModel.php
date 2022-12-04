@@ -70,5 +70,15 @@
                     "integer"=> lang("Validation.venda.quantidade_venda.integer")]
             ];
         }
+
+        public function lastUpdate() {
+            $db = db_connect();
+            $result = $db->query("SELECT UPDATE_TIME
+            FROM   information_schema.tables
+            WHERE  TABLE_SCHEMA = 'enjoy'
+               AND TABLE_NAME = 'VENDA'")->getResult();
+            $db->close();
+            return $result[0]->UPDATE_TIME;
+        }
     }
 ?>

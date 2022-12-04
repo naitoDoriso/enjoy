@@ -14,10 +14,10 @@ class FornecedorModel extends Model
 
     protected $validationRules = [
         "NOME_FORNECEDOR" => "required|regex_match[/^([ \u{61}-\u{7A}\u{E0}-\u{F6}\u{F9}-\u{FC}\u{169}\u{27}\u{2D}])*$/ui]",
-        "CNPJ" => "required|regex_match[/^[\d.\/-]*$/]",
+        "CNPJ" => "required|is_unique[FORNECEDOR.CNPJ]|regex_match[/^[\d.\/-]*$/]",
         "ENDERECO" => "required|regex_match[/^([\d,. \u{61}-\u{7A}\u{E0}-\u{F6}\u{F9}-\u{FC}\u{169}\u{27}\u{2D}])*$/ui]|max_length[50]",
         "CEP" => "required|regex_match[/^[\d-]*$/]|max_length[10]",
-        "TELEFONE" => "required|regex_match[/^[\(\d\)-]*$/]"
+        "TELEFONE" => "required|regex_match[/^[ \+\(\d\)-]*$/]"
     ];
 
     protected $validationMessages = [
@@ -27,6 +27,7 @@ class FornecedorModel extends Model
         ],
 
         "CNPJ" => [
+            "is_unique" => "Fornecedor já cadastrado neste CNPJ",
             "required" => "Campo CNPJ não pode estar vazio",
             "regex_match" => "Campo CNPJ deve ser no padrão 00.000.000/0000-00"
         ],
@@ -45,7 +46,7 @@ class FornecedorModel extends Model
 
         "TELEFONE" => [
             "required" => "Campo TELEFONE não pode estar vazio",
-            "regex_match" => "Campo TELEFONE deve ser no padrão (12)12345-6789"
+            "regex_match" => "Campo TELEFONE possui caracteres inválidos"
         ]
     ];
 
@@ -58,6 +59,7 @@ class FornecedorModel extends Model
             ],
     
             "CNPJ" => [
+                "is_unique" => lang("Validation.fornecedor.cnpj.is_unique"),
                 "required" => lang("Validation.fornecedor.cnpj.required"),
                 "regex_match" => lang("Validation.fornecedor.cnpj.regex_match")
             ],

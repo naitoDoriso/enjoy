@@ -52,11 +52,12 @@ class Fornecedor extends BaseController{
 
             $dados = [
                 "NOME_FORNECEDOR" => $this->request->getVar('NOME_FORNECEDOR'),
-                "CNPJ" => $this->request->getVar('CNPJ'),
                 "ENDERECO" => $this->request->getVar('ENDERECO'),
                 "CEP" => $this->request->getVar('CEP'),
                 "TELEFONE" => $this->request->getVar('TELEFONE')
             ];
+
+            if ($this->request->getVar('CNPJ')!=$fornecedorModel->find($id)->CNPJ) $dados["CNPJ"] = $this->request->getVar('CNPJ');
 
             if($fornecedorModel -> update($id, $dados)){
                 $mensagem = lang("form/form_fornecedor.edited");

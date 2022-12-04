@@ -30,10 +30,14 @@ class Vendedor extends BaseController{
                 "TELEFONE" => $this->request->getVar('TELEFONE')
             ];
 
-            if($vendedorModel -> save($dados)){
-                $mensagem = lang("form/form_vendedor.inserted");
-            }else{
-                $mensagem = $vendedorModel->errors();
+            if ($dados["DATA_NASC"]<(date('Y')-130).'-01-01' || $dados["DATA_NASC"]>(date('Y')-16).date('-m-d') || $dados["DATA_NASC"]=='0000-00-00') {
+                $mensagem = [lang("form/form_vendedor.errodate")];
+            } else {
+                if($vendedorModel -> save($dados)){
+                    $mensagem = lang("form/form_vendedor.inserted");
+                }else{
+                    $mensagem = $vendedorModel->errors();
+                }
             }
         }
 
@@ -56,17 +60,22 @@ class Vendedor extends BaseController{
             $dados = [
                 "NOME_VENDEDOR" => $this->request->getVar('NOME_VENDEDOR'),
                 "DATA_NASC" => $this->request->getVar('DATA_NASC'),
-                "CPF" => $this->request->getVar('CPF'),
                 "EMAIL" => $this->request->getVar('EMAIL'),
                 "ENDERECO" => $this->request->getVar('ENDERECO'),
                 "CEP" => $this->request->getVar('CEP'),
                 "TELEFONE" => $this->request->getVar('TELEFONE')
             ];
 
-            if($vendedorModel -> update($id, $dados)){
-                $mensagem = lang("form/form_vendedor.edited");
-            }else{
-                $mensagem = $vendedorModel->errors();
+            if ($this->request->getVar('CPF')!=$vendedorModel->find($id)->CPF) $dados["CPF"] = $this->request->getVar('CPF');
+
+            if ($dados["DATA_NASC"]<(date('Y')-130).'-01-01' || $dados["DATA_NASC"]>(date('Y')-16).date('-m-d') || $dados["DATA_NASC"]=='0000-00-00') {
+                $mensagem = [lang("form/form_vendedor.errodate")];
+            } else {
+                if($vendedorModel -> update($id, $dados)){
+                    $mensagem = lang("form/form_vendedor.edited");
+                }else{
+                    $mensagem = $vendedorModel->errors();
+                }
             }
         }
         

@@ -47,7 +47,7 @@
             <div class="row-mb-3">
                 <label for="VALOR" class="col-sm-5 col-form-label"><?= lang("form/form_produto.valor") ?></label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" name="VALOR" id="VALOR" value="<?= $VALOR ?>">
+                    <input type="number" step=".01" class="form-control" name="VALOR" id="VALOR" value="<?= $VALOR ?>">
                 </div>
             </div>
             <div class="row-mb-3">

@@ -3,6 +3,7 @@
 return [
     'cliente' => [
         'cpf' => [
+            'is_unique' => 'CPF ya registrado',
             'required' => 'El campo CPF no puede estar vacío',
             'regex_match' => 'El campo CPF debe estar en el patrón 123.456.789-12'],
 
@@ -16,7 +17,7 @@ return [
             'max_length' => 'El campo DIRECCIÓN ha excedido el número máximo de caracteres'],
 
         'telefone' => [
-            'regex_match' => 'El campo TELÉFONO debe estar en el patrón (12)12345-6789']
+            'regex_match' => 'El campo TELÉFONO tiene caracteres no válidos']
     ],
     'estoque' => [
         'data_entrada' => [
@@ -25,7 +26,7 @@ return [
 
         'quantidade_entrada' => [
             'required' => 'El campo CANTIDAD DE ENTRADA no puede estar vacío',
-            'integer' => 'El campo INPUT QUANTITY acepta solo números enteros'],
+            'is_natural_no_zero' => 'El campo INPUT QUANTITY acepta solo números positivos'],
                         
         'id_produto' => [
             'required' => 'El campo PRODUCTO no puede estar vacío',
@@ -38,6 +39,7 @@ return [
         ],
                 
         'cnpj' => [
+            'is_unique' => 'Proveedor ya registrado en este CNPJ',
             'required' => 'El campo CNPJ no puede estar vacío',
             'regex_match' => 'El campo CNPJ debe estar en el valor predeterminado 00.000.000/0000-00'
         ],
@@ -56,7 +58,7 @@ return [
                 
         'telefone' => [
             'required' => 'El campo TELÉFONO no puede estar vacío',
-            'regex_match' => 'El campo TELÉFONO debe estar en el patrón (12)12345-6789'
+            'regex_match' => 'El campo TELÉFONO tiene caracteres no válidos'
         ]
     ],
     'produto' => [
@@ -103,6 +105,7 @@ return [
         ],
 
         'cpf' => [
+            'is_unique' => 'CPF ya registrado',
             'required' => 'El campo CPF no puede estar vacío',
             'regex_match' => 'El campo CPF debe estar en el patrón 123.456.789-12'
         ],
@@ -125,7 +128,7 @@ return [
 
         'telefone' => [
             'required' => 'El campo TELÉFONO no puede estar vacío',
-            'regex_match' => 'El campo TELÉFONO debe estar en el patrón (12)12345-6789'
+            'regex_match' => 'El campo TELÉFONO tiene caracteres no válidos'
         ]
     ]
 ];

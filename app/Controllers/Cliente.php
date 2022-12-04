@@ -54,10 +54,11 @@ class Cliente extends BaseController
 
             $dados = [
                 "NOME" => $this->request->getVar('NOME'),
-                "CPF" => $this->request->getVar('CPF'),
                 "ENDERECO" => $this->request->getVar('ENDERECO'),
                 "TELEFONE" => $this->request->getVar('TELEFONE')
             ];
+
+            if ($this->request->getVar('CPF')!=$id) $dados["CPF"] = $this->request->getVar('CPF');
 
             if($ClienteModel -> update($id, $dados)){
                 $mensagem = lang("form/form_cliente.edited");

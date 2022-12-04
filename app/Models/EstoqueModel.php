@@ -10,7 +10,7 @@
 
         protected $validationRules = [
             "DATA_ENTRADA"=> "required|valid_date[Y-m-d]",
-            "QUANTIDADE_ENTRADA"=> "required|integer",
+            "QUANTIDADE_ENTRADA"=> "required|is_natural_no_zero",
             "ID_PRODUTO"=> "required|integer"            
         ];
     
@@ -21,7 +21,7 @@
     
             "QUANTIDADE_ENTRADA"=> [
                 "required"=> "Campo QUANTIDADE ENTRADA não pode estar vazio",
-                "integer"=> "Campo QUANTIDADE ENTRADA aceita somente números inteiros"],
+                "is_natural_no_zero"=> "Campo QUANTIDADE ENTRADA aceita somente números positivos"],
                 
             "ID_PRODUTO"=> [
                 "required"=> "Campo ID_PRODUTO não pode estar vazio",
@@ -37,12 +37,22 @@
         
                 "QUANTIDADE_ENTRADA"=> [
                     "required"=> lang("Validation.estoque.quantidade_entrada.required"),
-                    "integer"=> lang("Validation.estoque.quantidade_entrada.integer")],
+                    "is_natural_no_zero"=> lang("Validation.estoque.quantidade_entrada.is_natural_no_zero")],
                     
                 "ID_PRODUTO"=> [
                     "required"=> lang("Validation.estoque.id_produto.required"),
                     "integer"=> lang("Validation.estoque.id_produto.integer")]
             ];
+        }
+
+        public function lastUpdate() {
+            $db = db_connect();
+            $result = $db->query("SELECT UPDATE_TIME
+            FROM   information_schema.tables
+            WHERE  TABLE_SCHEMA = 'enjoy'
+               AND TABLE_NAME = 'ESTOQUE'")->getResult();
+            $db->close();
+            return $result[0]->UPDATE_TIME;
         }
     }
 ?>

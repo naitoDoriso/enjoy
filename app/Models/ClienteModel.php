@@ -9,14 +9,15 @@
         protected $returnType = "object";
 
         protected $validationRules = [
-            "CPF"=> "required|regex_match[/^[\d.-]*$/]",
+            "CPF"=> "required|is_unique[CLIENTE.CPF]|is_unique[VENDEDOR.CPF]|regex_match[/^[\d.-]*$/]",
             "NOME"=> "required|regex_match[/^([ \u{61}-\u{7A}\u{E0}-\u{F6}\u{F9}-\u{FC}\u{169}\u{27}\u{2D}])*$/ui]|max_length[60]",
             "ENDERECO"=> "regex_match[/^([\d,. \u{61}-\u{7A}\u{E0}-\u{F6}\u{F9}-\u{FC}\u{169}\u{27}\u{2D}])*$/ui]|max_length[100]",
-            "TELEFONE"=> "regex_match[/^[\(\d\)-]*$/]"
+            "TELEFONE"=> "regex_match[/^[ \+\(\d\)-]*$/]"
         ];
     
         protected $validationMessages = [ 
             "CPF"=> [
+                "is_unique" => "CPF já cadastrado",
                 "required"=> "Campo CPF não pode estar vazio",
                 "regex_match"=> "Campo CPF deve ser no padrão 123.456.789-12"],
     
@@ -30,13 +31,14 @@
                 "max_length"=> "Campo ENDEREÇO excedeu o máximo de caracteres"],
     
             "TELEFONE"=> [
-                "regex_match"=> "Campo TELEFONE deve ser no padrão (12)12345-6789"]
+                "regex_match"=> "Campo TELEFONE possui caracteres inválidos"]
         ];
 
         public function __construct(...$params) {
             parent::__construct(...$params);
             $this->validationMessages = [
                 "CPF"=> [
+                    "is_unique" => lang('Validation.cliente.cpf.is_unique'),
                     "required" => lang('Validation.cliente.cpf.required'),
                     "regex_match" => lang('Validation.cliente.cpf.regex_match')
                 ],

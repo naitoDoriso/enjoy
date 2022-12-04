@@ -10,5 +10,6 @@ return[
     'titleadd' => 'Guardar Inventario',
     'titleedit' => 'Editar Inventario',
     'inserted' => '¡Entrada insertada con éxito!',
-    'edited' => '¡Inventario editado con éxito!'
+    'edited' => '¡Inventario editado con éxito!',
+    'errodate' => '¡Fecha invalida! (debe estar entre 01/01/1920 e '.date('d/m/Y').')'
 ];

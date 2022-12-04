@@ -15,8 +15,11 @@ class Refresh extends BaseController
         $produtosRows = $this->request->getVar('produtos') == "" ? 0 : $this->request->getVar('produtos');
         $vendaRows = $this->request->getVar('venda') == "" ? 0 : $this->request->getVar('venda');
         $estoqueRows = $this->request->getVar('estoque') == "" ? 0 : $this->request->getVar('estoque');
+        $time = $this->request->getVar('time') == "" ? 0 : $this->request->getVar('time');
+        $lastUpdateVenda = $vendaModel->lastUpdate();
+        $lastUpdateEstoque = $estoqueModel->lastUpdate();
 
-        if (count($produtoModel->findAll())!=$produtosRows || count($vendaModel->findAll())!=$vendaRows || count($estoqueModel->findAll())!=$estoqueRows) {
+        if (count($produtoModel->findAll())!=$produtosRows || count($vendaModel->findAll())!=$vendaRows || count($estoqueModel->findAll())!=$estoqueRows || $time<$lastUpdateVenda || $time<$lastUpdateEstoque) {
             echo "true";
         } else {
             echo "false";

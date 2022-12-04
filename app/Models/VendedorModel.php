@@ -15,11 +15,11 @@ class VendedorModel extends Model
     protected $validationRules = [
         "NOME_VENDEDOR" => "required|regex_match[/^([ \u{61}-\u{7A}\u{E0}-\u{F6}\u{F9}-\u{FC}\u{169}\u{27}\u{2D}])*$/ui]",
         "DATA_NASC" => "required|valid_date",
-        "CPF" => "required|regex_match[/^[\d.-]*$/]",
+        "CPF" => "required|is_unique[VENDEDOR.CPF]|is_unique[CLIENTE.CPF]|regex_match[/^[\d.-]*$/]",
         "EMAIL" => "required|valid_email",
         "ENDERECO" => "required|regex_match[/^([\d,. \u{61}-\u{7A}\u{E0}-\u{F6}\u{F9}-\u{FC}\u{169}\u{27}\u{2D}])*$/ui]|max_length[50]",
         "CEP" => "required|regex_match[/^[\d-]*$/]",
-        "TELEFONE" => "required|regex_match[/^[\(\d\)-]*$/]"
+        "TELEFONE" => "required|regex_match[/^[ \+\(\d\)-]*$/]"
     ];
 
     protected $validationMessages = [
@@ -34,6 +34,7 @@ class VendedorModel extends Model
         ],
 
         "CPF" => [
+            "is_unique" => "CPF já cadastrado",
             "required" => "Campo CPF não pode estar vazio",
             "regex_match" => "Campo CPF deve ser no padrão 123.456.789-12"
         ],
@@ -56,7 +57,7 @@ class VendedorModel extends Model
 
         "TELEFONE" => [
             "required" => "Campo TELEFONE não pode estar vazio",
-            "regex_match" => "Campo TELEFONE deve ser no padrão (12)12345-6789"
+            "regex_match" => "Campo TELEFONE possui caracteres inválidos"
         ]
     ];
 
@@ -75,6 +76,7 @@ class VendedorModel extends Model
             ],
 
             "CPF" => [
+                "is_unique" => lang("Validation.vendedor.cpf.is_unique"),
                 "required" => lang("Validation.vendedor.cpf.required"),
                 "regex_match" => lang("Validation.vendedor.cpf.regex_match")
             ],
