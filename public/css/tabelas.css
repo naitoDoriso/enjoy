@@ -1,0 +1,159 @@
+.table, .table td, .table th {
+    text-align: center !important;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border: 1px solid lavender!important;
+}
+.dataTables_wrapper {
+    width: 100%!important;
+    overflow-x: auto
+}
+div.dt-buttons {
+    float: none!important;
+}
+.caneta{
+    color: #F5DD29;
+}
+.caneta:hover{
+    color: #F9A825;
+}
+.lixeira{
+    color: #ff0000;
+}
+.lixeira:hover{
+    color: #8b0303;
+} 
+.adicionar{
+    font-size: 50px;
+    animation: size 4s infinite 1s;
+}
+.menu{
+    font-size: 50px;
+    animation: size 4s infinite 1s;
+}
+.botao{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px!important;
+}
+.botao .btn{
+    width: max-content;
+    display: flex;
+    align-items: center;
+}
+.botao *{
+    text-decoration: none;
+}
+.dataTables_wrapper .dataTables_paginate, .dataTables_wrapper .dataTables_paginate span, .dataTables_wrapper .dataTables_paginate .paginate_button {
+    display: flex!important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    width: 40px!important;
+    height: 40px!important;
+    border: none!important;
+    border-radius: 6px!important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    color: black!important;
+    background: lavender!important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover, .dt-button.buttons-print:hover, .dt-button.buttons-pdf.buttons-html5:hover, .dt-button.buttons-csv.buttons-html5:hover, .dt-button.buttons-excel.buttons-html5:hover, .dt-button.buttons-copy.buttons-html5:hover, .dt-button.buttons-collection.buttons-colvis:hover, .dt-button.buttons-columnVisibility.active:hover{
+    background: #198754!important;
+    color: white!important;
+}
+
+.dt-button.buttons-print, .dt-button.buttons-pdf.buttons-html5, .dt-button.buttons-csv.buttons-html5, .dt-button.buttons-excel.buttons-html5, .dt-button.buttons-copy.buttons-html5, .dt-button.buttons-collection.buttons-colvis, .dt-button.buttons-columnVisibility.active{
+    border-radius: 6px;
+    min-width: max-content!important;
+    color: #198754;
+    border-color: #198754;
+    background: white!important;
+}
+
+.dt-buttons{
+    margin-bottom: 25px!important;
+}
+
+.dt-buttons > button {
+    margin-bottom: 0!important;
+    padding: 10.4px;
+}
+
+.dt-buttons > a:has(button) {
+    justify-self: flex-end;
+}
+
+.dataTables_filter{
+    margin-bottom: 15px!important;
+}
+div.enabled {
+    margin: 0!important;
+    top: 40%!important;
+}
+.links {
+    margin: 0;
+}
+.links>a:not(:last-child)::after {
+    content: "|";
+    font-weight: bolder;
+    line-height: 0;
+    font-size: 20px;
+    margin: 5px;
+}
+.loading {
+    width: 100%;
+    height: 100%;
+    z-index: 9999999999;
+    background: white;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity .5s linear;
+}
+.loadingio-spinner-rolling-jnhaguefrsr {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes ldio-pd3ftmktrcr {
+    0% { transform: translate(-50%,-50%) rotate(0deg); }
+    100% { transform: translate(-50%,-50%) rotate(360deg); }
+  }
+  .ldio-pd3ftmktrcr div {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 20px solid #198754;
+    border-top-color: transparent;
+    border-radius: 50%;
+  }
+  .ldio-pd3ftmktrcr div {
+    animation: ldio-pd3ftmktrcr 1s linear infinite;
+    top: 100px;
+    left: 100px
+  }
+  .loadingio-spinner-rolling-jnhaguefrsr {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0);
+  }
+  .ldio-pd3ftmktrcr {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+  }
+  .ldio-pd3ftmktrcr div { box-sizing: content-box; }
